@@ -1,60 +1,46 @@
-import React, { useState, useRef, useEffect } from 'react';
+// 아이디 , 비밀번호 폼 구현​
+
+// 로그인 버튼 생성 -> submit 으로 설정 (새로고침 막는다)​
+
+// 아이디와 비번이 같으면 "로그인 성공"
+
+// 다르면 "다시 확인 필요" alert로 띄운다.
+
+import React, { useState } from 'react';
 
 const App = () => {
-  const [text, setText] = useState('');
+  const [form, setForm] = useState({ username: '', password: '' });
 
-  const [status, setStatus] = useState('버튼');
-  const inRef=useRef(null);
+  const handleSubmit = (e) => {
+    e.preventDefault(); // submit으로 인한 페이지 새로고침 방지
 
-  const [num, setNum] = useState(0);
-  const [list, setList] = useState([]);
-
-  useEffect(() => {
-    if (status !== '로딩중...') return;
-
-    inRef.current = setTimeout(() => {
-      setStatus('완료!');
-    }, 3000);
-
-    return () => clearInterval(inRef.current );
-  }, [status]); 
-
-  useEffect(() => {
-    const list = [];
-    for (let i = 1; i <= num; i++) {
-      list.push(i);
+    // 아이디와 비밀번호가 같은지 확인
+    if (form.username === form.password && form.username.trim() !== '') {
+      alert('로그인 성공');
+    } else {
+      alert('다시 확인 필요');
     }
-    setList(list);
-  }, [num]);
+  };
 
   return (
-    <div>
-      <h2>글자 수 세기</h2>
+    <form onSubmit={handleSubmit}>
       <input
-        placeholder="문장을 입력하세요."
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        rows="5"
+        type="text"
+        placeholder="아이디"
+        value={form.username}
+        onChange={(e) => setForm({ ...form, username: e.target.value })}
       />
-      <div>
-        공백 포함: {text.length}자 | 공백 제외: {text.replace(/\s/g, '').length}자
-      </div>
-
-      <div>      
-        <button onClick={()=>setStatus('로딩중...')}>{status}</button>
-      </div>
-
-      <div>
-        <input value={num} onChange={(e)=>setNum(Number(e.target.value))}/>
-        <div>
-          <p>{list}</p>
-        </div>
-      </div>
-
-    </div>
+      <br />
+      <input
+        type="password"
+        placeholder="비밀번호"
+        value={form.password}
+        onChange={(e) => setForm({ ...form, password: e.target.value })}
+      />
+      <br />
+      <button type="submit">로그인</button>
+    </form>
   );
 };
 
 export default App;
-
-
