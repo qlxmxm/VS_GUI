@@ -1,0 +1,127 @@
+/* 전체 앱 스타일 */
+.app {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #e0f7ff; /* 연한 하늘색 */
+  color: #004d66;
+  padding: 20px;
+  max-width: 100%;
+  height: 100vh; /* 화면 고정 */
+  overflow: hidden; /* 스크롤 제거 */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* 제목 */
+h1 {
+  text-align: center;
+  color: #007acc;
+  margin-bottom: 30px;
+}
+
+/* 로그인, 회원가입 영역 */
+.auth-section {
+  background: #f0fbff; /* 더 연한 하늘색 */
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 153, 255, 0.2);
+  width: 100%;
+  max-width: 500px;
+}
+
+/* 입력 필드 */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #99d6ff;
+  border-radius: 5px;
+  outline: none;
+  font-size: 16px;
+  background-color: #ffffff;
+}
+
+/* 버튼 스타일 */
+button {
+  background-color: #4db8ff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #1a8cff;
+}
+
+/* 로그아웃 버튼 별도 색상 */
+.logoutBtn {
+  background-color: #3399ff;
+}
+
+.logoutBtn:hover {
+  background-color: #007acc;
+}
+
+/* 회원 목록 */
+.user-list {
+  background-color: #f0fbff;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 500px;
+  max-height: 30vh;
+  overflow-y: auto;
+}
+
+/* 회원 항목 */
+.po-item {
+  background-color: #e6f7ff;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.po-item:hover {
+  background-color: #cceeff;
+}
+
+.po-item h1 {
+  margin: 0;
+  font-size: 20px;
+  color: #005580;
+}
+
+.po-item p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #003344;
+}
+
+/* 선택된 유저 상세 보기 */
+.selected-user {
+  background-color: #f0fbff;
+  padding: 20px;
+  border: 2px solid #99d6ff;
+  margin-top: 20px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.selected-user h2 {
+  margin-top: 0;
+  color: #007acc;
+}

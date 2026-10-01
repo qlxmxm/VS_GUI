@@ -1,65 +1,60 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react';
 
 const App = () => {
-  const [name, setName] = useState('');
-  const [mail, setMail] = useState('');
+  const [text, setText] = useState('');
 
-  const [todo, setTodo] = useState([]);
-  const [modiId, setModiId] = useState(null);
+  const [status, setStatus] = useState('버튼');
+  const inRef=useRef(null);
 
-  const onAddUpdate = () => {
-    if (!mail.includes("@")) {
-      alert("이메일은 @를 포함해야합니다");
-      return;
+  const [num, setNum] = useState(0);
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    if (status !== '로딩중...') return;
+
+    inRef.current = setTimeout(() => {
+      setStatus('완료!');
+    }, 3000);
+
+    return () => clearInterval(inRef.current );
+  }, [status]); 
+
+  useEffect(() => {
+    const list = [];
+    for (let i = 1; i <= num; i++) {
+      list.push(i);
     }
-
-    if (name.trim() === '') return;
-
-    if (modiId !== null) {
-      setTodo(todo.map((todo1) => todo1.id === modiId ? { ...todo1, name: name, email: mail } : todo1))
-      setModiId(null); 
-      setName(""); 
-      setMail("");
-    } else { 
-      setTodo([...todo, { id: Date.now(), name: name, email: mail }])
-      setName(""); 
-      setMail("");
-    }
-  };
-
-  const onModify = (todo1) => {
-    setName(todo1.name);
-    setMail(todo1.email);
-    setModiId(todo1.id);  
-  };
-
-  const onDelete = (id) => {
-    setTodo(todo.filter((todo1) => todo1.id !== id));
-
-    if (id === modiId) {
-      setModiId(null); 
-      setName(""); 
-      setMail("");
-    }
-  };
+    setList(list);
+  }, [num]);
 
   return (
     <div>
-      <h2>이름과 이메일</h2>
-      <input value={name} onChange={(e) => setName(e.target.value)} placeholder='이름' />
-      <input value={mail} onChange={(e) => setMail(e.target.value)} placeholder='이메일 입력' />
-      <button onClick={onAddUpdate}>{modiId !== null ? "수정완료" : "추가"}</button>
-      
-      <ul>
-        {todo.map((todo1) => (
-          <li key={todo1.id}>이름: {todo1.name} 이메일: {todo1.email}
-            <button onClick={() => onModify(todo1)}>수정</button>
-            <button onClick={() => onDelete(todo1.id)}>삭제</button>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
-}
+      <h2>글자 수 세기</h2>
+      <input
+        placeholder="문장을 입력하세요."
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        rows="5"
+      />
+      <div>
+        공백 포함: {text.length}자 | 공백 제외: {text.replace(/\s/g, '').length}자
+      </div>
 
-export default App
+      <div>      
+        <button onClick={()=>setStatus('로딩중...')}>{status}</button>
+      </div>
+
+      <div>
+        <input value={num} onChange={(e)=>setNum(Number(e.target.value))}/>
+        <div>
+          <p>{list}</p>
+        </div>
+      </div>
+
+    </div>
+  );
+};
+
+export default App;
+
+
