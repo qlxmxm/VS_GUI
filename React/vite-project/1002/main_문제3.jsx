@@ -2,11 +2,14 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 // import './index.css'
 import App from './App.jsx'
+import UserProvider from './components/UserProvider.jsx'
 
 createRoot(document.getElementById('root')).render(
+  <UserProvider>
   <div>
     <App /> {/*children*/}
   </div>
+  </UserProvider>
 )
 
 

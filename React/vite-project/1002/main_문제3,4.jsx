@@ -2,11 +2,13 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 // import './index.css'
 import App from './App.jsx'
+// import FormProvider from './components/FormProvider.jsx'
+import FormProvider from './components/FormProvider2.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <div>
+  <FormProvider>
     <App /> {/*children*/}
-  </div>
+  </FormProvider>
 )
 
 
