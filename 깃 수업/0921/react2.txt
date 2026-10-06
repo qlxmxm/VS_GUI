@@ -1,4 +1,0 @@
-team: React
-manager: Min
-members: JiJuliYoo
-friend: Hyuk

@@ -1,4 +1,0 @@
-team: JS
-manager: Park
-members: MiWon
-friend: Kyung
